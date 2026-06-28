@@ -11,3 +11,6 @@ skills-lock.json
 
 # Mist deploy configuration (contains VM credentials)
 mist_deploy.conf
+
+# AI assistant instructions (personal, not for repo)
+AGENTS.md
