@@ -1,0 +1,10 @@
+# Environment variables (secrets)
+.env
+*.env.local
+
+# LLM API key fallback file (used by simulation/llm_client.py)
+llm_api.key
+
+# Opencode personal configuration
+.agents/
+skills-lock.json

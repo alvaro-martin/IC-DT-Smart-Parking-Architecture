@@ -1,0 +1,18 @@
+services:
+  # Grafana allows you to query, visualize, alerta and understand your metrics no matter where they are stored.
+  grafana:
+    labels:
+      org.fiware: 'tutorial'
+    image: grafana/grafana:8.5.27
+    container_name: grafana
+    depends_on:
+      - crate-db
+    ports:
+      - "3002:3000"
+    environment:
+      - GF_INSTALL_PLUGINS=orchestracities-map-panel,grafana-clock-panel,grafana-worldmap-panel
+      - GF_SERVER_PROTOCOL=http
+      - GF_SERVER_ROOT_URL=${GRAFANA_ROOT_URL:-https://localhost/grafana/}
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true   
+    volumes:
+      - grafana:/var/lib/grafana

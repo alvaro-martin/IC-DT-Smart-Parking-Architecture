@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  parking-reader:
+    build:
+      context: ./parking-reader
+    container_name: parking-reader
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - default
+    depends_on:
+      - crate-db
+      - orion
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
