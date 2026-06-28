@@ -1,0 +1,28 @@
+# =============================================================================
+# Mist Deploy Configuration
+# =============================================================================
+# Copy this file and fill in your real values:
+#   cp mist_deploy.conf.example mist_deploy.conf
+#
+# NEVER commit mist_deploy.conf to version control.
+# =============================================================================
+
+# Test parameters
+M=136
+N=30
+seed=2
+alpha=5
+beta=2
+
+# VM connection (Tailscale)
+VM_tailscale_domain_name="http://your-vm-name.tailnet.ts.net"
+VM_tailscale_IPv4="100.x.x.x"
+VM_username="ubuntu"
+VM_password="your-ssh-password"
+
+# Directory paths
+VM_dir="/home/ubuntu"
+LM_dir="/home/your-user/Desktop"
+onVM_dir="ic-unicamp/mist_deploy/onVMScripts"
+onGen_dir="ic-unicamp/mist_deploy/onGeneratorScripts"
+onInfra_dir="ic-unicamp/mist_deploy/infra"

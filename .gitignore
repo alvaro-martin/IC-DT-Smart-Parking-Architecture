@@ -8,3 +8,6 @@ llm_api.key
 # Opencode personal configuration
 .agents/
 skills-lock.json
+
+# Mist deploy configuration (contains VM credentials)
+mist_deploy.conf
