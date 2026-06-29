@@ -1,0 +1,36 @@
+# =============================================================================
+# Edge Deploy Configuration
+# =============================================================================
+# Copy this file and fill in your real values:
+#   cp edge_deploy.conf.example edge_deploy.conf
+#
+# NEVER commit edge_deploy.conf to version control.
+# =============================================================================
+
+# Test parameters
+M=136
+N=30
+seed=1
+alpha=1
+beta=1
+
+# VM1 connection (Tailscale) - runs infra/
+VM_tailscale_domain_name="http://your-vm-name.tailnet.ts.net"
+VM_tailscale_IPv4="100.x.x.x"
+VM_username="ubuntu"
+VM_password="your-ssh-password"
+
+# Jetson connection (Tailscale) - runs onJetson/
+Jetson_tailscale_domain_name="http://your-jetson.tailnet.ts.net"
+Jetson_tailscale_IPv4="100.x.x.x"
+Jetson_username="your-jetson-user"
+Jetson_password="your-jetson-password"
+
+# Directory paths
+VM_dir="/home/ubuntu"
+Jetson_dir="/home/your-jetson-user/Desktop"
+LM_dir="/home/your-user/Desktop"
+onVM_dir="IC-DT-Smart-Parking-Architecture/edge_deploy/onVMScripts"
+onJetson_dir="IC-DT-Smart-Parking-Architecture/edge_deploy/onJetson"
+onGen_dir="IC-DT-Smart-Parking-Architecture/edge_deploy/onGenScripts"
+onInfra_dir="IC-DT-Smart-Parking-Architecture/edge_deploy/infra"

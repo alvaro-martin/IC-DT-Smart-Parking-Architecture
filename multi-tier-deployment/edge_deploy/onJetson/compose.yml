@@ -1,0 +1,16 @@
+services:
+  ultralytics-inference:
+    build: ./jetson-ml
+    ports:
+      - "8000:8000"
+    container_name: jetson-ml_container
+    runtime: nvidia
+    ipc: host
+    stdin_open: true
+    tty: true
+    env_file:
+      - .env
+    environment:
+      WORKERS: 1 # Change this value to control the number of Gunicorn workers
+      IOT_URL: ${IOT_URL}
+      IOT_KEY: ${IOT_KEY}
