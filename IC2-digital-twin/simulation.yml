@@ -1,0 +1,13 @@
+services:
+  simulator-ui:
+    build: ./simulation
+    container_name: parking_sim_ui
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./simulation:/app
+    environment:
+      STREAMLIT_SERVER_HEADLESS: "true"
+      API_URL: "https://llm.ic.unicamp.br/api/chat/completions"
+      API_KEY: ${API_KEY}
+      LLM_MODEL: "qwen2.5-coder:3b"

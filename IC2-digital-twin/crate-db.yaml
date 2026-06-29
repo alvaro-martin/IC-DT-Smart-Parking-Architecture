@@ -1,0 +1,19 @@
+services:
+  # Crate-DB is a Time Series DB designed to use with IoT.
+  # Can ingest a large number of data points per second and queried in real-time.
+  crate-db:
+    labels:
+      org.fiware: 'tutorial'
+    image: crate:5.8.2
+    hostname: crate-db
+    container_name: db-crate
+    ports:
+      # Admin UI
+      - "4200:4200"
+      # Transport protocol
+      - "4300:4300"
+    command: crate -Cauth.host_based.enabled=false  -Ccluster.name=democluster -Chttp.cors.enabled=true -Chttp.cors.allow-origin="*" -Cdiscovery.type=single-node
+    environment:
+      - CRATE_HEAP_SIZE=2g # see https://crate.io/docs/crate/howtos/en/latest/deployment/containers/docker.html#troubleshooting
+    volumes:
+      - crate-db:/data

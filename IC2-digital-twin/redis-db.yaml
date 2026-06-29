@@ -1,0 +1,17 @@
+services:
+  # Redis is an in-memory data store that serves as cache to improve performance when used along CrateDB.
+  redis-db:
+    labels:
+      org.fiware: 'tutorial'
+    image: redis:6
+    hostname: redis-db
+    container_name: db-redis
+    networks:
+      - default
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-db:/data
+    #healthcheck:
+      #test: ["CMD", "redis-cli","ping"]
+      #interval: 10s

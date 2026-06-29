@@ -1,0 +1,18 @@
+services:
+  nginx-reverse-proxy:
+    image: nginx:1.28.0
+    container_name: nginx-reverse-proxy
+    ports:
+      - "80:80"       # Expose port 80 for HTTP
+      - "443:443"     # Expose port 443 for HTTPS
+    volumes:
+      # Mount the nginx.conf file for reverse proxy configuration
+      - ./nginx-reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+      # Mount the certs directory for SSL certificates
+      - ./certs:/etc/nginx/certs:ro
+    networks:
+      - default
+    depends_on:
+      - grafana
+      - monitor-grafana
+      - iot-agent
