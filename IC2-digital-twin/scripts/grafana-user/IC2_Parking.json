@@ -1,0 +1,671 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_CRATEDB-DOC",
+      "label": "CrateDB-doc",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "postgres",
+      "pluginName": "PostgreSQL"
+    }
+  ],
+  "__elements": [],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "geomap",
+      "name": "Geomap",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "8.5.27"
+    },
+    {
+      "type": "datasource",
+      "id": "postgres",
+      "name": "PostgreSQL",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1759331701667,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "${DS_CRATEDB-DOC}"
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 0,
+        "y": 0
+      },
+      "id": 12,
+      "options": {
+        "content": "<div style=\"display:flex; justify-content:center; align-items:center; height:100%; text-align:center;\">\n  <img src=\"https://ic2-poc.s3.us-east-1.amazonaws.com/clock-svgrepo-com.svg\" \n       style=\"height:140px; width:140px; margin-right:12px;\" />\n  \n  <div style=\"display:flex; flex-direction:column; align-items:flex-start;\">\n    <span style=\"font-size:100px; font-weight:bold; color:#ff4757; line-height:1;\">\n      $last_seen_hour\n    </span>\n    <span style=\"font-size:50px; font-weight:bold; color:#57606f; line-height:1; margin-top:-10px;\">\n      $last_seen_date\n    </span>\n  </div>\n</div>\n",
+        "mode": "html"
+      },
+      "pluginVersion": "8.5.27",
+      "title": "Last Time Updated",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "${DS_CRATEDB-DOC}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "transparent",
+                  "index": 0
+                },
+                "1": {
+                  "color": "red",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 19,
+        "w": 9,
+        "x": 8,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "basemap": {
+          "config": {},
+          "name": "Layer 0",
+          "type": "osm-standard"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "field": "status_num",
+                  "fixed": "dark-green"
+                },
+                "opacity": 1,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 10,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "location": {
+              "geohash": "location",
+              "latitude": "lat",
+              "longitude": "lon",
+              "lookup": "location",
+              "mode": "coords"
+            },
+            "name": "Spots",
+            "tooltip": true,
+            "type": "markers"
+          },
+          {
+            "config": {
+              "rules": [],
+              "src": "public/gazetteer/ps_00_07.geojson",
+              "style": {
+                "color": {
+                  "fixed": "#96D98D"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "name": "PS_00_07",
+            "tooltip": true,
+            "type": "geojson"
+          },
+          {
+            "config": {
+              "rules": [],
+              "src": "public/gazetteer/ps_08_09_v4.geojson",
+              "style": {
+                "color": {
+                  "fixed": "#8AB8FF"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "name": "PS_08_09",
+            "tooltip": true,
+            "type": "geojson"
+          },
+          {
+            "config": {
+              "rules": [],
+              "src": "public/gazetteer/ps_10_15.geojson",
+              "style": {
+                "color": {
+                  "fixed": "#96D98D"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "name": "PS_10_15",
+            "tooltip": true,
+            "type": "geojson"
+          }
+        ],
+        "view": {
+          "id": "coords",
+          "lat": -22.814843,
+          "lon": -47.064251,
+          "zoom": 21.39
+        }
+      },
+      "pluginVersion": "8.5.27",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "${DS_CRATEDB-DOC}"
+          },
+          "format": "table",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.064251959883066 AS DOUBLE) AS lon,\n  CAST(-22.81476512075327 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-000'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-000'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.06424369856532 AS DOUBLE) AS lon,\n  CAST(-22.814784104652833 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-001'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-001'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.06423543724758 AS DOUBLE) AS lon,\n  CAST(-22.8148030885524 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-002'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-002'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.06422717592984 AS DOUBLE) AS lon,\n  CAST(-22.81482207245196 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-003'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-003'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.0642189146121 AS DOUBLE) AS lon,\n  CAST(-22.814841056351526 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-004'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-004'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.06421065329436 AS DOUBLE) AS lon,\n  CAST(-22.81486004025109 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-005'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-005'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.06420239197661 AS DOUBLE) AS lon,\n  CAST(-22.814879024150656 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-006'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-006'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.06419413065887 AS DOUBLE) AS lon,\n  CAST(-22.814898008050218 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-007'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-007'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.06436001935509 AS DOUBLE) AS lon,\n  CAST(-22.814784557969254 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-008'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-008'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.064351754924495 AS DOUBLE) AS lon,\n  CAST(-22.81480245866474 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-009'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-009'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.06433163671239 AS DOUBLE) AS lon,\n  CAST(-22.814843784737157 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-010'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-010'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.064323520946495 AS DOUBLE) AS lon,\n  CAST(-22.81486209660313 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-011'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-011'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.06431540518061 AS DOUBLE) AS lon,\n  CAST(-22.8148804084691 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-012'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-012'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.06430728941473 AS DOUBLE) AS lon,\n  CAST(-22.81489872033507 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-013'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-013'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.064299173648834 AS DOUBLE) AS lon,\n  CAST(-22.814917032201045 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-014'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-014'\n  )\n\nUNION ALL\n\nSELECT\n  time_index AS \"time\",\n  entity_id,\n  CASE status\n    WHEN 'free' THEN 0\n    WHEN 'occupied' THEN 1\n  END AS status_num,\n  CAST(-47.06429105788294 AS DOUBLE) AS lon,\n  CAST(-22.814935344067017 AS DOUBLE) AS lat\nFROM etparkingspot\nWHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-015'\n  AND time_index = (\n    SELECT MAX(time_index)\n    FROM etparkingspot\n    WHERE entity_id = 'urn:ngsi-ld:ParkingSpot:IC2-015'\n  )\n;",
+          "refId": "Parking spots status and coordinates",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "IC2 Parking Spots",
+      "type": "geomap"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "${DS_CRATEDB-DOC}"
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 0,
+        "y": 7
+      },
+      "id": 16,
+      "options": {
+        "content": "<div style=\"display:flex; justify-content:center; align-items:center; height:100%; text-align:center; background-color: rgb(150, 217, 141);\">\n  <img src=\"https://ic2-poc.s3.us-east-1.amazonaws.com/car-svgrepo-com.svg\" \n       style=\"height:100px; width:100px; margin-right:20px;\" />\n  <span style=\"font-size:120px; font-weight:bold; color:#ff4757;\">\n    $free_general_spots\n  </span>\n</div>",
+        "mode": "markdown"
+      },
+      "pluginVersion": "8.5.27",
+      "title": "Free Spots - General",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "${DS_CRATEDB-DOC}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 25
+              },
+              {
+                "color": "green",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 4,
+        "y": 7
+      },
+      "id": 18,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.5.27",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "${DS_CRATEDB-DOC}"
+          },
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  time_index AS \"time\",\n  FLOOR(CAST(availablespotnumber AS FLOAT) * 100.0 / 14.0) AS free_percentage\nFROM etparkinggroup\nWHERE\n  $__timeFilter(time_index) AND entity_id = 'urn:ngsi-ld:ParkingGroup:IC2-Staff'\nORDER BY 1,2",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "% of Available Free Spots - General ",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "${DS_CRATEDB-DOC}"
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 0,
+        "y": 13
+      },
+      "id": 14,
+      "options": {
+        "content": "<div style=\"display:flex; justify-content:center; align-items:center; height:100%; text-align:center; background-color: rgb(138, 184, 255);\">\n  <img src=\"https://ic2-poc.s3.us-east-1.amazonaws.com/wheelchair-left-2-svgrepo-com.svg\" \n       style=\"height:120px; width:120px; margin-right:12px;\" />\n  <span style=\"font-size:120px; font-weight:bold; color:#ff4757;\">\n    $free_disabled_spots\n  </span>\n</div>",
+        "mode": "markdown"
+      },
+      "pluginVersion": "8.5.27",
+      "title": "Free Spots - Disabled Only",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "${DS_CRATEDB-DOC}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 4,
+        "y": 13
+      },
+      "id": 19,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.5.27",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "${DS_CRATEDB-DOC}"
+          },
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  time_index AS \"time\",\n  FLOOR(CAST(availablespotnumber AS FLOAT) * 100.0 / 2.0) AS free_percentage\nFROM etparkinggroup\nWHERE\n  $__timeFilter(time_index) AND entity_id = 'urn:ngsi-ld:ParkingGroup:IC2-Staff-DisabledOnly'\nORDER BY 1,2",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "% of Available Free Spots - Disabled Only",
+      "type": "gauge"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 36,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "postgres",
+          "uid": "${DS_CRATEDB-DOC}"
+        },
+        "definition": "SELECT\n  date_format('%H:%i', MAX(time_index) AT TIME ZONE 'America/Sao_Paulo') AS last_seen\nFROM etoffstreetparking;",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "last_seen_hour",
+        "options": [],
+        "query": "SELECT\n  date_format('%H:%i', MAX(time_index) AT TIME ZONE 'America/Sao_Paulo') AS last_seen\nFROM etoffstreetparking;",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "postgres",
+          "uid": "${DS_CRATEDB-DOC}"
+        },
+        "definition": "SELECT\n  availablespotnumber\nFROM etparkinggroup\nWHERE\n  $__timeFilter(time_index)\n  AND entity_id = 'urn:ngsi-ld:ParkingGroup:IC2-Staff-DisabledOnly'\nORDER BY time_index DESC\nLIMIT 1;",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "free_disabled_spots",
+        "options": [],
+        "query": "SELECT\n  availablespotnumber\nFROM etparkinggroup\nWHERE\n  $__timeFilter(time_index)\n  AND entity_id = 'urn:ngsi-ld:ParkingGroup:IC2-Staff-DisabledOnly'\nORDER BY time_index DESC\nLIMIT 1;",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "postgres",
+          "uid": "${DS_CRATEDB-DOC}"
+        },
+        "definition": "SELECT\n  availablespotnumber AS free_general_spots\nFROM etparkinggroup\nWHERE\n  $__timeFilter(time_index)\n  AND entity_id = 'urn:ngsi-ld:ParkingGroup:IC2-Staff'\nORDER BY time_index DESC\nLIMIT 1;",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "free_general_spots",
+        "options": [],
+        "query": "SELECT\n  availablespotnumber AS free_general_spots\nFROM etparkinggroup\nWHERE\n  $__timeFilter(time_index)\n  AND entity_id = 'urn:ngsi-ld:ParkingGroup:IC2-Staff'\nORDER BY time_index DESC\nLIMIT 1;",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "postgres",
+          "uid": "${DS_CRATEDB-DOC}"
+        },
+        "definition": "SELECT\n  date_format('%d/%m/%Y', MAX(time_index) AT TIME ZONE 'America/Sao_Paulo') AS last_date\nFROM etoffstreetparking;\n",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "last_seen_date",
+        "options": [],
+        "query": "SELECT\n  date_format('%d/%m/%Y', MAX(time_index) AT TIME ZONE 'America/Sao_Paulo') AS last_date\nFROM etoffstreetparking;\n",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "America/Sao_Paulo",
+  "title": "IC2 Parking",
+  "uid": "hdgc0z3Hki",
+  "version": 11,
+  "weekStart": ""
+}

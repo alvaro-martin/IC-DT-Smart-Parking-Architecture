@@ -1,0 +1,7 @@
+<div style="display:flex; justify-content:center; align-items:center; height:100%; text-align:center; background-color: rgb(138, 184, 255);">
+  <img src="https://ic2-poc.s3.us-east-1.amazonaws.com/wheelchair-left-2-svgrepo-com.svg" 
+       style="height:120px; width:120px; margin-right:12px;" />
+  <span style="font-size:120px; font-weight:bold; color:#ff4757;">
+    $free_disabled_spots
+  </span>
+</div>

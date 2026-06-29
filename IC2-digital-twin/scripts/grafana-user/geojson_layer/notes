@@ -1,0 +1,9 @@
+For Grafana to access this files, you must copied them into Grafana using docker commands.
+First of, you must run these commands located in this folder "geojson_layer".
+
+"docker cp ps_00_07.geojson grafana:/usr/share/grafana/public/gazetteer/"
+
+"docker cp ps_08_09.geojson grafana:/usr/share/grafana/public/gazetteer/"
+
+"docker cp ps_10_15.geojson grafana:/usr/share/grafana/public/gazetteer/"
+

@@ -1,0 +1,8 @@
+SELECT
+  availablespotnumber AS free_general_spots
+FROM etparkinggroup
+WHERE
+  $__timeFilter(time_index)
+  AND entity_id = 'urn:ngsi-ld:ParkingGroup:IC2-Staff'
+ORDER BY time_index DESC
+LIMIT 1;

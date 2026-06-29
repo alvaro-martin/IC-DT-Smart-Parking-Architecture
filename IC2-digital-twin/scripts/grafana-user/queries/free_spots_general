@@ -1,0 +1,7 @@
+<div style="display:flex; justify-content:center; align-items:center; height:100%; text-align:center; background-color: rgb(150, 217, 141);">
+  <img src="https://ic2-poc.s3.us-east-1.amazonaws.com/car-svgrepo-com.svg" 
+       style="height:100px; width:100px; margin-right:20px;" />
+  <span style="font-size:120px; font-weight:bold; color:#ff4757;">
+    $free_general_spots
+  </span>
+</div>

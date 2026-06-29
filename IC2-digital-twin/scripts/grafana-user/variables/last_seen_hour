@@ -1,0 +1,3 @@
+SELECT
+  date_format('%H:%i', MAX(time_index) AT TIME ZONE 'America/Sao_Paulo') AS last_seen
+FROM etoffstreetparking;

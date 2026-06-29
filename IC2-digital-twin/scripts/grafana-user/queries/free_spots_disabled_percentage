@@ -1,0 +1,7 @@
+SELECT
+  time_index AS "time",
+  FLOOR(CAST(availablespotnumber AS FLOAT) * 100.0 / 2.0) AS free_percentage
+FROM etparkinggroup
+WHERE
+  $__timeFilter(time_index) AND entity_id = 'urn:ngsi-ld:ParkingGroup:IC2-Staff-DisabledOnly'
+ORDER BY 1,2

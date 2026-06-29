@@ -1,0 +1,13 @@
+<div style="display:flex; justify-content:center; align-items:center; height:100%; text-align:center;">
+  <img src="https://ic2-poc.s3.us-east-1.amazonaws.com/clock-svgrepo-com.svg" 
+       style="height:140px; width:140px; margin-right:12px;" />
+  
+  <div style="display:flex; flex-direction:column; align-items:flex-start;">
+    <span style="font-size:100px; font-weight:bold; color:#ff4757; line-height:1;">
+      $last_seen_hour
+    </span>
+    <span style="font-size:50px; font-weight:bold; color:#57606f; line-height:1; margin-top:-10px;">
+      $last_seen_date
+    </span>
+  </div>
+</div>

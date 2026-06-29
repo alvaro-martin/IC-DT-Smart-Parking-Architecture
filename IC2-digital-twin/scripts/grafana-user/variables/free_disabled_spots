@@ -1,0 +1,8 @@
+SELECT
+  availablespotnumber
+FROM etparkinggroup
+WHERE
+  $__timeFilter(time_index)
+  AND entity_id = 'urn:ngsi-ld:ParkingGroup:IC2-Staff-DisabledOnly'
+ORDER BY time_index DESC
+LIMIT 1;

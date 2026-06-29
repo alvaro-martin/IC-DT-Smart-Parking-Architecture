@@ -1,0 +1,3 @@
+SELECT
+  date_format('%d/%m/%Y', MAX(time_index) AT TIME ZONE 'America/Sao_Paulo') AS last_date
+FROM etoffstreetparking;
