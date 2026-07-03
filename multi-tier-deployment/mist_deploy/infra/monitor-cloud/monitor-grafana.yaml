@@ -7,8 +7,7 @@ services:
     volumes:
       - monitor-grafana:/var/lib/grafana
     environment:
-      # NOTE: replace DOMAIN_NAME with your actual domain (see .env.example)
-      - GF_SERVER_ROOT_URL=https://${DOMAIN_NAME}/monitor-grafana/
+      - GF_SERVER_ROOT_URL=${MONITOR_GRAFANA_ROOT_URL:-https://localhost/monitor-grafana/}
       - GF_SERVER_SERVE_FROM_SUB_PATH=true
       - GF_SERVER_PROTOCOL=http
     networks:
