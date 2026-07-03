@@ -17,3 +17,6 @@ AGENTS.md
 
 # Edge deploy configuration (contains VM/Jetson credentials)
 edge_deploy.conf
+
+# Python virtual environments
+venv/
