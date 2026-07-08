@@ -1,0 +1,11 @@
+volumes:
+  mongo-db: ~
+  mongo-config: 
+  monitor-grafana: ~
+  data-models:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data-models
+  prometheus_data: ~ 
