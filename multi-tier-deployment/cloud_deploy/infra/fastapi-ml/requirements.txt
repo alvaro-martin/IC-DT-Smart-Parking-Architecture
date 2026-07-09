@@ -1,0 +1,11 @@
+ultralytics==8.3.11
+torch==2.1.2
+numpy<2
+pillow==10.2.0
+psutil==5.9.8
+fastapi==0.110.1
+gunicorn
+uvicorn
+python-multipart
+openvino==2024.6.0
+networkx==3.1
