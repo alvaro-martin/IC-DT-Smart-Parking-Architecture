@@ -1,0 +1,16 @@
+services:
+  # Web server where the @contex file is served.
+  ld-context:
+    labels:
+      org.fiware: 'tutorial'
+    image: httpd:alpine
+    hostname: context
+    container_name: fiware-ld-context
+    ports:
+      - "3004:80"
+    volumes:
+      - data-models:/usr/local/apache2/htdocs/
+      - type: bind
+        source: ./conf/mime.types
+        target: /usr/local/apache2/conf/mime.types
+        read_only: true

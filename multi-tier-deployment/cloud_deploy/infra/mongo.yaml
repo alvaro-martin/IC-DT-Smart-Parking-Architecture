@@ -1,0 +1,20 @@
+services:
+  mongo-db:
+    labels:
+      org.fiware: 'tutorial'
+    image: mongo:6.0
+    hostname: mongo-db
+    container_name: db-mongo
+    expose:
+      - "27017"
+    ports:
+      - "27017:27017"
+    networks:
+      - default
+    volumes:
+      - mongo-db:/data/db
+      - mongo-config:/data/configdb
+    command: --nojournal --setParameter logLevel=0
+    healthcheck:
+      test: ["CMD", "mongosh", "localhost:27017/test", "--quiet"]
+      interval: 600s

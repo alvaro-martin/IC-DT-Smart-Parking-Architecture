@@ -1,0 +1,13 @@
+include:
+  - volumes.yaml
+  - networks.yaml
+  - context.yaml
+  - mongo.yaml
+  - iot-agent.yaml
+  - orion.yaml
+  - nginx-reverse-proxy.yaml
+  - ./monitor-cloud/cadvisor.yaml
+  - ./monitor-cloud/monitor-grafana.yaml
+  - ./monitor-cloud/prometheus-monitor.yaml
+  - ./monitor-cloud/node-exporter.yaml
+  - fastapi-ml.yaml

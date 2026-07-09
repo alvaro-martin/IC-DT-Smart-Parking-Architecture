@@ -1,0 +1,14 @@
+services:
+  fastapi-ml:
+    build:
+      context: ./fastapi-ml #Folder containing Dockerfile, app.py, etc.
+    container_name: fastapi-ml_container
+    ports:
+      - "8000:8000"
+    environment:
+      WORKERS: 4 # Change this value to control the number of Gunicorn workers
+      MODEL_DIR: yolo11m_int8_openvino_model/
+      IOT_URL: "http://fiware-iot-agent:7896/iot/json"
+      IOT_KEY: "12345"
+    networks:
+      - default
