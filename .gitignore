@@ -9,15 +9,14 @@ llm_api.key
 .agents/
 skills-lock.json
 
-# Mist deploy configuration (contains VM credentials)
-mist_deploy.conf
+# Per-tier deploy configurations (contain Tailscale IPs / SSH credentials)
+# Matches mist_deploy.conf, edge_deploy.conf, fog_deploy.conf, cloud_deploy.conf,
+# and any future <tier>_deploy.conf. The matching *.conf.example is committed.
+*_deploy.conf
 
 # AI assistant instructions (personal, not for repo)
 AGENTS.md
 **/AGENTS.md
-
-# Edge deploy configuration (contains VM/Jetson credentials)
-edge_deploy.conf
 
 # Python virtual environments
 venv/
