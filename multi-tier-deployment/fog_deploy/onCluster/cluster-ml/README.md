@@ -171,7 +171,7 @@ run, pass them with `docker run -e KEY=value ...`.
 
 `IOT_URL` and `IOT_KEY` are **deployment-specific**: in the fog
 compose file they point at the VM2 tailnet domain, e.g.
-`http://vm-ab.tailb3f17d.ts.net:7896/iot/json`. When running the
+`http://<vm2-tailnet-domain>:7896/iot/json`. When running the
 container standalone, point `IOT_URL` at whichever IoT Agent you want
 the count to land in, or omit `entity_id` on the request to skip
 forwarding entirely.

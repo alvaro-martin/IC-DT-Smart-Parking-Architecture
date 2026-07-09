@@ -1,0 +1,53 @@
+services:
+  # -------------------------------
+  # 1️⃣ Tailscale service
+  # -------------------------------
+  tailscale:
+    image: tailscale/tailscale:latest
+    container_name: tailscale
+    hostname: gpu-yolo-node        # Appears in your Tailnet admin panel
+    env_file:
+      - .env
+    volumes:
+      - ./tailscale-state:/var/lib/tailscale  # persistent identity
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_USERSPACE=true
+    command: tailscaled
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    networks:
+      - tailscale-net
+
+  # -------------------------------
+  # 2️⃣ FastAPI + YOLO service
+  # -------------------------------
+  fastapi-app:
+    build: ./cluster-ml
+    image: yolo-trt-fastapi:latest
+    container_name: fastapi-ml_container
+    env_file:
+      - .env
+    environment:
+      WORKERS: 2  # Change this value to control the number of Gunicorn workers
+      MODEL_DIR: yolo11m.engine
+      NVIDIA_VISIBLE_DEVICES: all
+      IOT_URL: ${IOT_URL}
+      IOT_KEY: ${IOT_KEY}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    runtime: nvidia
+    depends_on:
+      - tailscale
+    network_mode: "service:tailscale"
+
+networks:
+  tailscale-net:
+    driver: bridge
