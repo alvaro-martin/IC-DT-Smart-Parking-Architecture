@@ -14,6 +14,9 @@ skills-lock.json
 # and any future <tier>_deploy.conf. The matching *.conf.example is committed.
 *_deploy.conf
 
+# Cloud-tier model comparison artefacts (local-only, not published)
+multi-tier-deployment/cloud_deploy/model_comparison/
+
 # AI assistant instructions (personal, not for repo)
 AGENTS.md
 **/AGENTS.md
