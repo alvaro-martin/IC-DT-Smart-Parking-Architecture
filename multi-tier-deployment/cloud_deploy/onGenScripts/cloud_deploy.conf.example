@@ -1,0 +1,29 @@
+# =============================================================================
+# Cloud Deploy Configuration
+# =============================================================================
+# Copy this file and fill in your real values:
+#   cp cloud_deploy.conf.example cloud_deploy.conf
+#
+# NEVER commit cloud_deploy.conf to version control.
+# =============================================================================
+
+# Test parameters
+M=136
+N=60
+seed=1
+alpha=1
+beta=1
+
+# VM connection (Tailscale) - runs the entire infra/ stack, including the
+# FastAPI-based ML inference container that the load generator targets
+VM_tailscale_domain_name="http://your-vm-name.tailnet.ts.net"
+VM_tailscale_IPv4="100.x.x.x"
+VM_username="ubuntu"
+VM_password="your-ssh-password"
+
+# Directory paths
+VM_dir="/home/ubuntu"
+LM_dir="/home/your-user/Desktop"
+onVM_dir="IC-DT-Smart-Parking-Architecture/cloud_deploy/onVMScripts"
+onGen_dir="IC-DT-Smart-Parking-Architecture/cloud_deploy/onGenScripts"
+onInfra_dir="IC-DT-Smart-Parking-Architecture/cloud_deploy/infra"
