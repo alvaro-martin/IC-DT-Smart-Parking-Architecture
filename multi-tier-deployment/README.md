@@ -15,6 +15,8 @@ Monitoring component (Prometheus, Grafana, cAdvisor, Node Exporter).
 VM1 is always the load generator and orchestrator. The campaign is the
 same full-factorial design on every tier:
 
+![Experimental design structure: 4 × 9 × 9 full-factorial campaign](./experiment_design_structure.png)
+
 | Factor | Levels | Count |
 |---|---|---|
 | **A — Deployment Strategy** | `mist`, `edge`, `fog`, `cloud` | 4 |
